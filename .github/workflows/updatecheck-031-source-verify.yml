@@ -1,0 +1,16 @@
+name: UpdateCheck 0.3.1 source SHA-256
+on:
+  push:
+    paths:
+      - 'projects/FHD_UpdateCheck/0.3.1/**'
+      - '.github/workflows/updatecheck-031-source-verify.yml'
+  pull_request:
+    paths:
+      - 'projects/FHD_UpdateCheck/0.3.1/**'
+      - '.github/workflows/updatecheck-031-source-verify.yml'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 projects/FHD_UpdateCheck/0.3.1/verify_source.py
