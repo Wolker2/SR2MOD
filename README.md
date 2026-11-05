@@ -19,3 +19,11 @@
 6. Версия с именем TEST или более высоким номером не считается рабочей без проверки в игре.
 
 _Индекс создан 2026-11-05 на основании доступных репозиториев GitHub и списка файлов папки Google Drive._
+
+## Импорт исходников 5 ноября 2026
+
+- [FHD_UpdateCheck 0.3.1 — полный исходный пакет, 7/7 SHA-256](projects/FHD_UpdateCheck/0.3.1/README_RU.md), локальная x86 сборка прошла.
+- [FHD_OnlineChat 0.22 FIX23 — 17 исходников + 3 вспомогательных файла](https://github.com/Wolker2/FHD_OnlineChat_0.18_SOURCE/tree/main/imports/0.22_FIX23_TEST), ModuleInfo.txt восстанавливается точно из UTF-8.
+- [FHD_UpgradeUnknovn 0.4.16 SOURCE_QA — 20 исходников + восстановленный Lang.dat](https://github.com/Wolker2/FHD_UpgradeUnknovn/tree/main/imports/0.4.16_SOURCE_QA), обратная сборка Lang.dat идентична 6800/6800 байт.
+
+Это исходники с локальной проверкой; они не объявлены игровыми RELEASE и не заменяют рабочие версии.
