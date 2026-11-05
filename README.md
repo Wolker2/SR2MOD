@@ -6,6 +6,7 @@
 
 - [Каталог исходников и модов](docs/MOD_CATALOG_RU.md)
 - [Правила сборки и публикации](docs/WORKFLOW_RU.md)
+- [Отчёт о переносе: что выполнено и что ещё нет](docs/MIGRATION_REPORT_2026-11-05_RU.md)
 - [Папка готовых архивов в Google Drive](https://drive.google.com/drive/folders/16iY_DzJk7X7NxmegMbqYURLl5C6Q8qTd)
 
 ## Основные принципы
