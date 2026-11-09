@@ -1,0 +1,31 @@
+{
+  "mod": "FHD_Navigator",
+  "version": "0.2.4_GALAXYLITE_TEXT_RESTORE_TEST",
+  "runtime_dlls": 0,
+  "runtime_exe_addresses": 0,
+  "source_sha256": {
+    "BUILD.md": "afb3d34058869b2ccccc554f396ae6435e2a0b5fa2710d8eaa28d880ba381b42",
+    "CHANGELOG.md": "1106b96bccc6596ff77f6b51cb0eea90ecbafa50940d35fb8a0d8275338057b4",
+    "DIAGNOSTICS_RU.md": "ad386ef282d5d962b95f1a9fd1be12c443567a56d80e3c6cb0cedb42aed5c31e",
+    "README_RU.md": "2c429b812240cce986be4a15a42e300838461a5ac27df1e6481307a8ec6d7c5c",
+    "build.py": "f9fe6964c68a1ae80eb1f41bb4e539b5aa71efdce691139ed316b2585816b818",
+    "package_sources.py": "202974df7648be1b3d7ea0dc3ec312c073780c330db3294991991a099f64441f",
+    "requirements.md": "97638664ac13f7c26df2691145850994320b588de38cd44013a4f4cc797659c3",
+    "src/CacheData.json": "49901b5e72259e2203a4b5e079b2001fab23ecb5a8247126e065da43658304ef",
+    "src/Lang.json": "25c45122b83448e0f514e309b210f2fc4e05f4ddaae61a40c138fef11131c42d",
+    "src/Main.json": "ad0a9beb9233bbb9709823d14161f68d2a76c892f738bd1d0065dc11cc16bf6c",
+    "src/ModuleInfo.txt": "67bf0223139b3e0953e9f6165bf8d62fe4e13bc8d2f957af31ba87c920885ad6",
+    "src/Navigator.code": "4b14ed29b468f31016260b535d0828adee254b3e542b97d0312db075e604b3de",
+    "src/RouteFrame.json": "53a0642003563a1ff1048e001889859ea743cf1ac68cf041ff4a7f92cb0326f6",
+    "src/lib/dat_codec.py": "01376ca6c3b398a12f2e8dd85b4158fc3e95de293c218b980045a317c11fc0cb",
+    "src/lib/gi_codec.py": "dedc0d763c43faf9f3e7cc70c59a7d90d5c09f64f4293f74b9cc96b787e7cc44",
+    "tests/engine_script_test.py": "94e6f97d44d374b625ed57abc9a59592d9cb9dad4c1f3a6f8e50f55137ffd668",
+    "tests/mouse_events_test.py": "d643b29606184031e11d65a704d8f2e8cfee2a4a62ea58fa7ec61bb3655686d4",
+    "tests/overlay_reference.py": "067f2a675aa03fb71c4161a2e2726e4ff78e4be17971e83f2234fff7a91a07d9",
+    "tests/regression_024.py": "a3afbd308ea01241598560552bb1817182822a9fcc67c9d0e36420a01ac475b0",
+    "tests/trade_overlay.json": "1d53adbce225b50f496718d0db252252f1e52a4c35db09c1fb9cd81dba8eac4e",
+    "tests/vanilla_galaxy.json": "0b756db16639ad4d32e061655e6531886f01dd57e760cbe567444ee3be8dde4b",
+    "tests/verify.py": "5682040c521f1d72d72497d4c3c86a2953b094996dd93009c4ee4cb83404f4d0",
+    "tests/verify_galaxylite.py": "2e354614b88dd9fdee6dc780c203958a8d0061d7c942a98837099fdf2f686f94"
+  }
+}

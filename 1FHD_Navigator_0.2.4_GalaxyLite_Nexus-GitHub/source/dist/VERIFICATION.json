@@ -1,0 +1,22 @@
+{
+  "mod": "FHD_Navigator",
+  "version": "0.2.4_GALAXYLITE_TEXT_RESTORE_TEST",
+  "status": "TEST, requires actual Windows gameplay verification",
+  "verified": [
+    "DAT encode/decode integrity",
+    "No duplicate Navigator UI names",
+    "No write to FHDQuestRouteInfo",
+    "Navigator label state never switched off",
+    "Route text recovery when signature unchanged and label empty",
+    "Navigator GUI merge tested with GalaxyLite and QuestMarker in 8 orders",
+    "GalaxyLite original UI map 1200x895 image and 1150x786 Map unchanged",
+    "No DLL or EXE hooks in runtime ZIP"
+  ],
+  "not_verified": [
+    "Real runtime text rendering in Windows",
+    "In-game route calculation and persistence",
+    "Actual child visibility and z-index with all user mods",
+    "RScript emulation on supplied executable (required Python dependencies unavailable)"
+  ],
+  "gameplay_tested": false
+}

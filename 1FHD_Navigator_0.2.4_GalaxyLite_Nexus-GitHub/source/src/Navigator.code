@@ -1,0 +1,252 @@
+function NavPart(str text,int number){
+    int k=0;int p=0;
+    while(k<number){p=findsubstr(text,'|');if(p<0){result='';exit;}text=substr(text,p+1);k=k+1;}
+    p=findsubstr(text,'|');if(p>=0)text=substr(text,0,p);
+    result=text;
+}
+function NavCount(str text){
+    int n=0;int i=0;
+    if(text!='')n=1;
+    for(i=0;i<count(text);i=i+1){if(substr(text,i,1)==','){n=n+1;}}
+    result=n;
+}
+function NavIndex(str text,int number){
+    int k=0;int p=0;
+    while(k<number){p=findsubstr(text,',');if(p<0){result=-1;exit;}text=substr(text,p+1);k=k+1;}
+    p=findsubstr(text,',');if(p>=0)text=substr(text,0,p);
+    if(text==''){result=-1;exit;}
+    int value=text;result=value;
+}
+function NavDrop(str text){
+    int i=0;int p=-1;
+    for(i=0;i<count(text);i=i+1){if(substr(text,i,1)==','){p=i;}}
+    if(p<0){result='';exit;}
+    result=substr(text,0,p);
+}
+function NavDistance(int a,int b){
+    result=round(sqrt(Dist2Star(GalaxyStar(a),GalaxyStar(b))));
+}
+function NavTotal(int origin,str text){
+    int n=NavCount(text);int last=origin;int total=0;int i=0;int next=0;
+    if(n<1 || n>256){result=-1;exit;}
+    for(i=0;i<n;i=i+1){next=NavIndex(text,i);if(next<0 || next>=GalaxyStars()){result=-1;exit;}total=total+NavDistance(last,next);last=next;}
+    result=total;
+}
+function NavRadius(dword star){
+    int n=StarPlanets(star);
+    if(n<1){result=-1;exit;}
+    dword planet=StarPlanets(star,n-1);
+    result=round(PlanetOrbitRadius(planet)+PlanetSize(planet)+800);
+}
+// The Navigator owns its own route text.  Never write into QuestMarker's
+// route line: QuestMarker may hide/rewrite that line at any time.
+// When QuestMarker supplies an existing frame, hide only our frame bitmap;
+// keep our text visible in a separate high-layer label.
+// Layout is refreshed only by native Galaxy input events (no hooks/timer).
+function NavSharedRoute(){
+    int dock=UICheckElement('Galaxy','FHDQuestRouteDock','SizeX');
+    if(dock<700){result=0;exit;}
+    int frame=UICheckElement('Galaxy','FHDQuestRouteFrame','SizeX');
+    if(frame>=700){result=1;exit;}
+    result=0;
+}
+function NavLayout(){
+    if(NavSharedRoute()){
+        InterfaceState('Galaxy','FHDNavigatorRouteFrame',0);
+    }else{
+        InterfaceState('Galaxy','FHDNavigatorRouteFrame',1);
+    }
+    // Critical regression fix: never hide our visible label.
+    InterfaceState('Galaxy','FHDNavigatorRouteInfo',1);
+}
+function NavShow(str text){
+    InterfaceText('Galaxy','FHDNavigatorRouteInfo',text);
+    InterfaceState('Galaxy','FHDNavigatorRouteInfo',1);
+}
+function NavClear(){
+    str currentText=UICheckElement('Galaxy','FHDNavigatorRouteInfo','Text');
+    if(currentText=='' || findsubstr(currentText,'Полёт:')==0 || findsubstr(currentText,'Время полёта:')==0 || findsubstr(currentText,'Навигатор:')==0){NavShow('');}
+}
+function NavCeil(float value){int rounded=value;if(value>rounded)rounded=rounded+1;result=rounded;}
+function NavHyper(float length,int boost){
+    int counter=max(2,round(length*0.1)+1);int days=0;
+    while(counter>0){counter=counter-1;if(counter>1){counter=counter-boost;if(counter<1)counter=1;}days=days+1;}
+    result=days;
+}
+function NavPort(dword star,dword ship,float x,float y,float dx,float dy){
+    dword port=0;dword candidate=0;int i=0;int owner=0;int kind=0;int standing=0;
+    float best=1.0e20;float distance=0.0;
+    for(i=0;i<StarPlanets(star);i=i+1){
+        candidate=StarPlanets(star,i);owner=PlanetOwner(candidate);
+        if(!((owner>=0 && owner<=4) || owner==7))continue;
+        if(GetRelationPlanet(candidate,ship)<10)continue;
+        distance=sqrt(sqr(CoordX(candidate)-x)+sqr(CoordY(candidate)-y))+sqrt(sqr(dx-CoordX(candidate))+sqr(dy-CoordY(candidate)));
+        if(distance<best){best=distance;port=candidate;}
+    }
+    for(i=0;i<StarRuins(star);i=i+1){
+        candidate=StarRuins(star,i);kind=ShipTypeN(candidate);standing=ShipStanding(candidate);
+        if(kind<6 || kind>11 || standing<2 || standing>6)continue;
+        if(ShipGetBad(candidate)==ship)continue;
+        distance=sqrt(sqr(CoordX(candidate)-x)+sqr(CoordY(candidate)-y))+sqrt(sqr(dx-CoordX(candidate))+sqr(dy-CoordY(candidate)));
+        if(distance<best){best=distance;port=candidate;}
+    }
+    result=port;
+}
+function NavSegment(int current,str route,int first,float x,float y,int speed,int fuel,int capacity,int regen,int boost){
+    int i=0;int next=0;int cost=0;int fly=0;int countRoute=NavCount(route);
+    dword a=0;dword b=0;float ra=0.0;float rb=0.0;float dx=0.0;float dy=0.0;float length=0.0;
+    float px=0.0;float py=0.0;
+    for(i=first;i<countRoute;i=i+1){
+        next=NavIndex(route,i);if(next==current)continue;
+        a=GalaxyStar(current);b=GalaxyStar(next);ra=NavRadius(a);rb=NavRadius(b);
+        if(ra<0 || rb<0){result=0;exit;}
+        dx=CoordX(b)-CoordX(a);dy=CoordY(b)-CoordY(a);length=sqrt(sqr(dx)+sqr(dy));
+        if(length<=0.0){result=0;exit;}
+        cost=round(length);if(cost>ShipJump(Player()) || cost>max(capacity,fuel)){result=0;exit;}
+        px=dx/length*(ra-400);py=dy/length*(ra-400);
+        fly=NavCeil(sqrt(sqr(px-x)+sqr(py-y))/speed);
+        if(fuel<capacity)fuel=min(capacity,fuel+regen*(fly+1));
+        if(fuel<cost){result=0;exit;}
+        fuel=fuel-cost;if(fuel<capacity)fuel=min(capacity,fuel+regen*NavHyper(length,boost));
+        x=-dx/length*(rb-300);y=-dy/length*(rb-300);current=next;
+        if(i==countRoute-1){result=1;exit;}
+        if(NavPort(b,Player(),x,y,x,y)){result=1;exit;}
+    }
+    result=1;
+}
+function NavCalculate(int origin,str route){
+    dword ship=Player();int speed=ShipSpeed(ship);int n=NavCount(route);
+    if(speed<=0){NavShow('Время полёта: корабль не может двигаться');exit;}
+    if(ShipInHyperSpace(ship)){NavShow('');exit;}
+    dword tank=ShipEqInSlot(ship,t_FuelTanks);
+    if(!tank){NavShow('Время полёта: нет топливного бака');exit;}
+    int fuel=ShipFuel(ship);int capacity=GetEquipmentStats(tank,0);int regen=0;
+    if(capacity<=0){NavShow('Время полёта: нет ёмкости для топлива');exit;}
+    int goo=ArtefactTypeInUse(ship,t_ArtefactFuel);
+    if(goo>0){regen=goo*(int(CT('Artefacts.NumericValues.kArtefactFuel'))+int(CT('Artefacts.NumericValues.kArtefactFuelEx'))*ArtefactTypeBoosted(ship,t_ArtefactFuel));}
+    int boost=ArtefactTypeInUse(ship,t_ArtGiperJump)*(1+ArtefactTypeBoosted(ship,t_ArtGiperJump));
+    float x=CoordX(ship);float y=CoordY(ship);int days=0;int refuels=0;
+    dword planet=GetShipPlanet(ship);dword station=GetShipRuins(ship);dword dock=planet;
+    if(!dock)dock=station;
+    if(dock){x=CoordX(dock);y=CoordY(dock);days=1;if(fuel<capacity)fuel=min(capacity,fuel+regen);}
+    int current=origin;int i=0;int next=0;int fly=0;int jumps=0;int cost=0;int hyper=0;
+    dword a=0;dword b=0;dword port=0;
+    float ra=0.0;float rb=0.0;float dx=0.0;float dy=0.0;float length=0.0;
+    float departureX=0.0;float departureY=0.0;
+    for(i=0;i<n;i=i+1){
+        next=NavIndex(route,i);if(next==current)continue;
+        a=GalaxyStar(current);b=GalaxyStar(next);ra=NavRadius(a);rb=NavRadius(b);
+        if(ra<0 || rb<0){NavShow('Время полёта: нет данных о размере системы');exit;}
+        dx=CoordX(b)-CoordX(a);dy=CoordY(b)-CoordY(a);length=sqrt(sqr(dx)+sqr(dy));
+        if(length<=0.0){NavShow('');exit;}
+        cost=round(length);
+        if(cost>ShipJump(ship) || cost>max(capacity,fuel)){NavShow('Время полёта: участок превышает дальность или бак');exit;}
+        departureX=dx/length*(ra-400);departureY=dy/length*(ra-400);
+        port=NavPort(a,ship,x,y,departureX,departureY);
+        if(i==0 && dock)port=dock;
+        if(port && !NavSegment(current,route,i,x,y,speed,fuel,capacity,regen,boost)){
+            if(!NavSegment(current,route,i,x,y,speed,capacity,capacity,regen,boost)){NavShow('Время полёта: не хватает топлива до следующей заправки');exit;}
+            if(!(i==0 && dock)){
+                fly=NavCeil(sqrt(sqr(CoordX(port)-x)+sqr(CoordY(port)-y))/speed);
+                days=days+fly+2;
+                x=CoordX(port);y=CoordY(port);
+            }
+            fuel=capacity;refuels=refuels+1;
+        }
+        fly=NavCeil(sqrt(sqr(departureX-x)+sqr(departureY-y))/speed);
+        if(fuel<capacity)fuel=min(capacity,fuel+regen*(fly+1));
+        if(fuel<cost){NavShow('Время полёта: нужна заправка, нет доступного пункта');exit;}
+        days=days+fly+1;fuel=fuel-cost;
+        hyper=NavHyper(length,boost);days=days+hyper;if(fuel<capacity)fuel=min(capacity,fuel+regen*hyper);
+        x=-dx/length*(rb-300);y=-dy/length*(rb-300);current=next;jumps=jumps+1;
+    }
+    str text='Полёт: ~ ';text=text+days;text=text+' дн. | Прыжков: ';text=text+jumps;text=text+' | Заправок: ';text=text+refuels;NavShow(text);
+}
+function NavUpdate(){
+    if(CurrentForm()!='Galaxy')exit;
+    NavLayout();
+    dword ship=Player();if(!ship)exit;
+    int mapWidth=UICheckElement('Galaxy','Map','SizeX');int mapHeight=UICheckElement('Galaxy','Map','SizeY');
+    if(mapWidth<=0 || mapHeight<=0)exit;
+    if(UICheckElement('Galaxy','FHDNavigatorMapObserver','SizeX')!=mapWidth || UICheckElement('Galaxy','FHDNavigatorMapObserver','SizeY')!=mapHeight){InterfaceSize('Galaxy','FHDNavigatorMapObserver',mapWidth,mapHeight);}
+    InterfacePos('Galaxy','FHDNavigatorMapObserver',UICheckElement('Galaxy','Map','PosX'),UICheckElement('Galaxy','Map','PosY'),-50);
+    str distanceText=UICheckElement('Galaxy','Distance','Text');
+    if(distanceText=='' || !UICheckElement('Galaxy','PathDesPos','IsActive')){
+        InterfaceText('Galaxy','FHDNavigatorState','');NavShow('Навигатор: выберите маршрут');exit;
+    }
+    int total=distanceText;
+    int firstX=UICheckElement('Galaxy','PathDesPos','PosX');
+    int firstY=UICheckElement('Galaxy','PathDesPos','PosY');
+    int lastX=UICheckElement('Galaxy','Distance','PosX')-15;
+    float lastY=UICheckElement('Galaxy','Distance','PosY')+int(UICheckElement('Galaxy','Distance','SizeY')/2);
+    str signature='';signature=signature+Id(ShipStar(ship));signature=signature+':';signature=signature+CurTurn();signature=signature+':';signature=signature+ShipSpeed(ship);
+    signature=signature+':';signature=signature+ArtefactTypeInUse(ship,t_ArtGiperJump);signature=signature+':';signature=signature+ArtefactTypeBoosted(ship,t_ArtGiperJump);
+    signature=signature+':';signature=signature+ShipFuel(ship);signature=signature+':';signature=signature+GetShipPlanet(ship);signature=signature+':';signature=signature+GetShipRuins(ship);
+    signature=signature+':';signature=signature+CoordX(ship);signature=signature+':';signature=signature+CoordY(ship);
+    signature=signature+':';signature=signature+ShipJump(ship);signature=signature+':';signature=signature+GetEquipmentStats(ShipEqInSlot(ship,t_FuelTanks),0);
+    signature=signature+':';signature=signature+ArtefactTypeInUse(ship,t_ArtefactFuel);signature=signature+':';signature=signature+ArtefactTypeBoosted(ship,t_ArtefactFuel);
+    signature=signature+':';signature=signature+total;signature=signature+':';signature=signature+firstX;signature=signature+':';signature=signature+firstY;
+    signature=signature+':';signature=signature+lastX;signature=signature+':';signature=signature+lastY;
+    str state=InterfaceText('Galaxy','FHDNavigatorState');
+    if(NavPart(state,2)==signature){
+        str label=UICheckElement('Galaxy','FHDNavigatorRouteInfo','Text');
+        if(label==''){
+            int cachedOrigin=NavPart(state,0);
+            str cachedRoute=NavPart(state,1);
+            if(cachedOrigin>=0 && cachedRoute!='')NavCalculate(cachedOrigin,cachedRoute);
+        }
+        exit;
+    }
+    int origin=-1;int first=-1;int last=-1;int firstHits=0;int lastHits=0;
+    int stars=GalaxyStars();int i=0;int sx=0;int sy=0;dword star=0;str key='';
+    if(stars<1 || stars>16384){NavShow('');exit;}
+    for(i=0;i<stars;i=i+1){
+        star=GalaxyStar(i);if(star==ShipStar(ship))origin=i;
+        if(!SectorVisible(StarToCon(star)))continue;
+        key='gs_';key=key+Id(star);
+        sx=UICheckElement('Galaxy',key,'PosX');sy=UICheckElement('Galaxy',key,'PosY');
+        if(sx==firstX && sy==firstY){first=i;firstHits=firstHits+1;}
+        if(sx==lastX && abs(sy-lastY)<=1){last=i;lastHits=lastHits+1;}
+    }
+    if(firstHits==0 || lastHits==0){
+        int fallbackFirst=-1;int fallbackLast=-1;int fHits=0;int lHits=0;
+        float galaxyW=CT('Constellations.GalaxySizeX');
+        float galaxyH=CT('Constellations.GalaxySizeY');
+        if(galaxyW>0.0 && galaxyH>0.0){
+            for(i=0;i<stars;i=i+1){
+                star=GalaxyStar(i);
+                if(!SectorVisible(StarToCon(star)))continue;
+                sx=round(1152.0*CoordX(star)/galaxyW);
+                sy=round(790.0*CoordY(star)/galaxyH);
+                if((abs(firstX-sx)<=1 && abs(firstY-sy)<=1) || (abs(firstX-(sx+6))<=1 && abs(firstY-(sy+6))<=1)){
+                    fallbackFirst=i;fHits=fHits+1;
+                }
+                if((abs(lastX-sx)<=1 && abs(lastY-sy)<=1) || (abs(lastX-(sx+6))<=1 && abs(lastY-(sy+6))<=1)){
+                    fallbackLast=i;lHits=lHits+1;
+                }
+            }
+        }
+        if(firstHits==0 && fHits==1){first=fallbackFirst;firstHits=1;}
+        if(lastHits==0 && lHits==1){last=fallbackLast;lastHits=1;}
+    }
+    if(origin<0 || firstHits!=1 || lastHits!=1){NavShow('Навигатор: не удалось распознать систему');InterfaceText('Galaxy','FHDNavigatorState','');exit;}
+    str route=NavPart(state,1);int oldOrigin=-1;str oldOriginText=NavPart(state,0);
+    if(oldOriginText!='')oldOrigin=oldOriginText;
+    int n=NavCount(route);int previousTotal=-1;int previousLast=-1;str shorter='';
+    if(oldOrigin==origin && n>0 && NavIndex(route,0)==first){
+        previousTotal=NavTotal(origin,route);previousLast=NavIndex(route,n-1);
+        if(last==first && total==NavDistance(origin,first)){route='';route=route+first;}
+        else if(previousTotal==total && previousLast==last){}
+        else if(n>1 && NavIndex(route,n-2)==last && previousTotal-NavDistance(last,previousLast)==total)route=NavDrop(route);
+        else if(previousLast!=last && previousTotal+NavDistance(previousLast,last)==total){route=route+',';route=route+last;}
+        else route='';
+    }else{
+        route='';if(first==last && total==NavDistance(origin,first))route=route+first;
+    }
+    if(route=='' || NavCount(route)>256 || NavTotal(origin,route)!=total){
+        InterfaceText('Galaxy','FHDNavigatorState','');NavShow('Навигатор: маршрут не распознан, выберите заново');exit;
+    }
+    str saved='';saved=saved+origin;saved=saved+'|';saved=saved+route;saved=saved+'|';saved=saved+signature;
+    InterfaceText('Galaxy','FHDNavigatorState',saved);NavCalculate(origin,route);
+}
+NavUpdate();
