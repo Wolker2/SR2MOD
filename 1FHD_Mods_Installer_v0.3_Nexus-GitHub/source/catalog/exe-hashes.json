@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "description": "SHA256 of original Rangers.exe. Register authoritative old/new executables via REGISTER_EXE_HASHES.cmd before publishing installer.",
+  "executables": []
+}
