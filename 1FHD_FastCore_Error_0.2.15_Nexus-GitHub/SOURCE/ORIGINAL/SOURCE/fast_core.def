@@ -1,0 +1,4 @@
+LIBRARY FHD_FastCore_Error.XenoPlugin.dll
+EXPORTS
+    XenoPlugin_Query
+    XenoPlugin_Initialize

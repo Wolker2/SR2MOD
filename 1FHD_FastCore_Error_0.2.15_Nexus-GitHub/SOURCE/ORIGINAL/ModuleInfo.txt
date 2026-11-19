@@ -1,0 +1,15 @@
+Name=FHD_FastCore_Error
+Author=FHD
+Priority=10
+Section=FHD_MODS
+SectionEng=FHD_MODS
+Languages=Rus,Eng
+NoNormalResources=1
+Dependence=
+Conflict=FHD_FastCore,SolFastGen,SolNextDayFast,SolUtilities,FHD_FastNewGame
+SmallDescription=<color=0,180,250>FHD FastCore Error 0.2.15 TEST</color> — восстановление хода после отключения модов
+FullDescription=Защита от пропавших иконок уведомлений, графических шаблонов, скриптов и артефактов при загрузке сохранения. Тест очистки сейва от осиротевших снарядов, медалей и замен изображений. Защита мостиков и фонов. Оптимизации FastCore.
+FullDescription=Предсимуляция 60 дней. Требуется Rangers.exe 6AC53B97 и XenoNativeLoader. Включается отдельно от FHD_FastCore.
+SmallDescriptionEng=FHD FastCore Error 0.2.15 TEST — save recovery and turn guard
+FullDescriptionEng=Shared recovery for missing message icons, script state, scene templates and custom artefacts. Optional removal of orphaned missiles, awards and saved image overrides. FastCore optimizations.
+FullDescriptionEng=60-day warmup. Requires Rangers.exe 6AC53B97 and XenoNativeLoader. Conflicts with FHD_FastCore.

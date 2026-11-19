@@ -1,0 +1,43 @@
+Проверка FHD FastCore Error 0.2.15
+
+- В логе от 11 ноября игра прошла прежнюю точку вылета из ангара.
+  На ходу 2791 скрипт PC_fem_rangers выполнил свыше 11 млн инструкций.
+  В исходном сейве присутствует EvoFemRangers. В активном наборе его нет.
+- В Rangers.exe 6AC53B97 проверен вызов кода хода в TScript.RunTurnCode.
+  Стенд проверил пропуск при снятом моде, передачу управления движку
+  при включённом моде, при другом скрипте и при отсутствии мода в сейве.
+  Проверены точное имя мода, разделители пути и регистр.
+- Проверено отключение при GuardSaveRecovery=0 и при изменённом коде
+  интерпретатора. Сохранены проверки участков FHDUUCore.
+- Две сборки DLL совпали побайтно. Пользовательский сейв под Windows
+  на стенде не загружался.
+
+Результаты x86-стенда
+PASS mode=0
+PASS mode=1
+PASS mode=2
+PASS mode=3
+PASS mode=4
+PASS mode=5
+PASS mode=6
+PASS mode=7
+PASS mode=8
+PASS mode=9
+PASS mode=10
+PASS mode=11
+PASS mode=12
+PASS mode=13
+PASS mode=14
+PASS mode=15
+PASS mode=16
+PASS mode=17
+PASS mode=18
+PASS mode=19
+PASS mode=20
+PASS mode=21
+PASS mode=22
+PASS mode=23
+PASS mode=24
+PASS mode=25
+PASS mode=26
+PASS mode=27

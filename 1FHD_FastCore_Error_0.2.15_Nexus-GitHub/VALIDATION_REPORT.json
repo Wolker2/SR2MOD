@@ -1,0 +1,212 @@
+{
+  "mod": "FHD_FastCore_Error",
+  "source_archive": "FHD_FastCore_Error_0.2.15.zip",
+  "archive_sha256": "d1aedcdbf89980c47c2bbfdc01342f6614cf6da59f8989a5554d51d20b4956ee",
+  "archive_file_count": 49,
+  "original_files_in_source": 38,
+  "text_or_code_files": 38,
+  "byte_exact_DAT_to_JSON": 0,
+  "png_files": 0,
+  "data_loss_in_original_archive": false,
+  "dll_source_recovered_from_compiled_binary": false,
+  "game_tested": false,
+  "warnings": [],
+  "files": {
+    "Mods/FHD_MODS/FHD_FastCore_Error/ModuleInfo.txt": {
+      "size": 1124,
+      "sha256": "13588c525f54f6eac326840ee3abb113e7a3c37a6874974aeadaa15bb5d1b6cb"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/Native/FHD_FastCore_Error.XenoPlugin.dll": {
+      "size": 48640,
+      "sha256": "f273fcfda15be1c3395626d6f95bd7eb66f2f0bff078b3d83b59f913877e0cdd"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/Native/FHD_FastCore_Error.XenoPlugin.ini": {
+      "size": 258,
+      "sha256": "d11c7183942dbb5cfedae56d18f2fa7abb7fa456d5ac39c07b970cdaaa3eca11"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/README_RU.txt": {
+      "size": 22593,
+      "sha256": "32a055f072514c1d286d727e1b7ec45749ec8f74e3770688cc02c36ccff4c07d"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SHA256SUMS.txt": {
+      "size": 3371,
+      "sha256": "80abf2b8cf6934311aa54d273000dd2acecd13f3ba7a83053ef8c61699cb2f5a"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/QA_RU.txt": {
+      "size": 1604,
+      "sha256": "7f641ecf0add908963bc8eb927e97fd81dc9fb9a2548b965113aebab47f3151d"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/build.sh": {
+      "size": 1258,
+      "sha256": "d4e49af756f4f1c80c8dba431d5c9dc9a2c75f8052112c1b6f96cc48af8ab495"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/elf_to_coff.py": {
+      "size": 3165,
+      "sha256": "ffb0e4ed2f11dd81c03140b66b9d508a4594f6e430b75fba8bcffbc7605e2a62"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/fast_core.c": {
+      "size": 29390,
+      "sha256": "785550a551c471971c982932310b798c20400089cc81f8180b74fd9590031833"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/fast_core.def": {
+      "size": 97,
+      "sha256": "6c567c0c3e9875b29ce8a26b2f4ae6ab398b482f7a06e438976ebd6a24f1ee04"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/fast_paths.c": {
+      "size": 4140,
+      "sha256": "9d6abe27da30a5ddda0b8a034472493cffa158502505f1a5a83c5b8ad7e22ec2"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/fast_paths.h": {
+      "size": 1327,
+      "sha256": "ca433863555f1fd807362e734e5dc108cd95982b26f162d9969f1648f100aa5e"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/import_stub.c": {
+      "size": 652,
+      "sha256": "57bc5eee513a0ad764f4ff984776bd4202c75c64a0fce0a8bb951fef361c999d"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/kernel32.def": {
+      "size": 124,
+      "sha256": "70c75d4a0544a8b5fa952dadf660a3d9e8475eead86d6c7fc7b3d6b52da53667"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/orphan_cleanup.c": {
+      "size": 17203,
+      "sha256": "34839ff7fba7a597f3c8064e8b9d27e2cee784cea79df535635abc893889f0b5"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/orphan_cleanup.h": {
+      "size": 476,
+      "sha256": "f5f0ad5c3413121e6f6f9a530197446b27c90d5da7d99f8cf67c09f105b6d2a5"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/bridge.S": {
+      "size": 329,
+      "sha256": "9bba927cf78e0d8bb834aab278b5f33bcdaa161d5f5920a610adb3107b130d80"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/bridge.c": {
+      "size": 2120,
+      "sha256": "d11ea3d7511a539a32249526a3f67e0ad0ec97b325f655556169d328326b65b1"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/pe_fixture.py": {
+      "size": 3439,
+      "sha256": "573a6c0bec0eaa6d051954a26bf314e39fa352561d616e7f405bf1419277d729"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/run.sh": {
+      "size": 3256,
+      "sha256": "b246c98ce8a10a60b8ea94edc90912890d46c0735a1b8638715f4b853db55c49"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/start.S": {
+      "size": 6889,
+      "sha256": "0ab1d6078782f25130a9f22b5c639aab48b56d242f963dc64797101006867886"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_cleanup.c": {
+      "size": 15197,
+      "sha256": "3e52070e0761343c33aff6e9c2cb87b3efc96127dc48c3e0b47754e31cad5212"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_core.c": {
+      "size": 19669,
+      "sha256": "70c422743eaa94737e8eefebd3137abf3571036f0bf06e8aef4166fd29b8ec13"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_planet.c": {
+      "size": 4997,
+      "sha256": "8b67cdd0df5553b432b981a922d5e4dc09b669cc20dbb465caeec4f937df0183"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_save.c": {
+      "size": 7667,
+      "sha256": "92aa4f2c7a9385ed52248bdc2f12ba5af4420efe907a7d3b3b7e9b4d0ae52ae7"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_scene_batch.c": {
+      "size": 6898,
+      "sha256": "214686ac0830987dac5a3a050affb1451763c75f902c67984ab49ff7556764af"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_scene_ship.c": {
+      "size": 5350,
+      "sha256": "0cbb2e282686058dcc9ad0f9de15cc14c40be7f6dfaa1c13e602df8abe6a5194"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_script.c": {
+      "size": 12477,
+      "sha256": "63d11d8436630809a1bf90ef5534d49dffeac09f16001df2895b4836e4e9b75b"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/qa/test_visual.c": {
+      "size": 19897,
+      "sha256": "f08377531e8f21f04d29c21c11968354e74f84bdd6a7e846e25ce265fa4a1ee4"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/resource_guard.c": {
+      "size": 17818,
+      "sha256": "504c0afbd794b30580f302dbddd742c7aa343141b8b9b70e64bdb3379889f821"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/resource_guard.h": {
+      "size": 1195,
+      "sha256": "70013fbc412c69a89a5ec1014616cea99f6722b2322dd68664949e51d2ea9b7e"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/save_recovery.c": {
+      "size": 6527,
+      "sha256": "a7a131e928ca9399aa47790776d067cbacae18c562e9e0b695d9483d2e99f80c"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/save_recovery.h": {
+      "size": 236,
+      "sha256": "97ce0021bd59a02f6239d60f0dfb2270ab3f5b4188567694fa1b64d7f859a559"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/scene_recovery.c": {
+      "size": 15682,
+      "sha256": "1222f697ce13ba79f17d2fb1324902bd5195d38273518e0f490119caf7a058b2"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/scene_recovery.h": {
+      "size": 243,
+      "sha256": "de0917bdc1cb8bb52b65ed6016540f8ead48a68524390fedae80949a68d8cda8"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/script_recovery.c": {
+      "size": 17179,
+      "sha256": "ff79635a1cae6383d26a871c5e51f2820760b0e777b7413161135c0bc8450135"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/script_recovery.h": {
+      "size": 371,
+      "sha256": "1bb0593a803b78ddccbe746c4eeb159e20f7e0a9e31f61b9952753ee26de216e"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/target_map.h": {
+      "size": 7796,
+      "sha256": "81c7c49601cb06e4cb710808c13cbb4b8b4f328c4f55819f01d428a2c8410353"
+    },
+    "Mods/FHD_MODS/FHD_FastCore_Error/SOURCE/target_map.py": {
+      "size": 6924,
+      "sha256": "ea7a4bd4db9d4875fbd79bebf90d3ffd1f1119d54baabfc5cdd1ca90eafe71fd"
+    },
+    "XenoNative/Plugins/FHD_FastNewGame/FHD_FastNewGame.ini": {
+      "size": 509,
+      "sha256": "c722e0c24796add00a7795009b387772750c8451b1924e641edb869d9dc93d50"
+    },
+    "XenoNative/Plugins/FHD_FastNewGame/FHD_FastNewGame.XenoPlugin.dll": {
+      "size": 11597,
+      "sha256": "3225b73c06e2e82cfb7ec21a20951fd3b6a1e3584093a77f4ceef51f01e1d08d"
+    },
+    "XenoNative/Plugins/FHD_FastNewGame/XenoNativePlugin.ini": {
+      "size": 95,
+      "sha256": "5db922be66df9a634bf3fcf321362f53604aed45defdfd5ce5a3fee161a3b600"
+    },
+    "XenoNative/Plugins/XenoStable/README_RU.txt": {
+      "size": 4430,
+      "sha256": "30fa3b17d5b311c1c5e0871cc8e860ed5eb23d833fb833cc0296b3598dfecd29"
+    },
+    "XenoNative/Plugins/XenoStable/XenoNativePlugin.ini": {
+      "size": 78,
+      "sha256": "af86e23f870126d319aa06b00e5078812e172e6974065fc61b1e224220a5e75d"
+    },
+    "XenoNative/Plugins/XenoStable/XenoStable.ini": {
+      "size": 282,
+      "sha256": "425c98c9b73ab35717497c3dfa8bec950359ea89dd4ae8ecc95afa3e906c3f6f"
+    },
+    "XenoNative/Plugins/XenoStable/XenoStable.Runtime.dll": {
+      "size": 248320,
+      "sha256": "2c0e678c7d1eec6b7dd496473b227e5a9e724b6982de6f5537ceb1a4dc5950ad"
+    },
+    "dsound.dll": {
+      "size": 79360,
+      "sha256": "ff8f36a294294fedd97a6846cbd390b7cbf46187878194c517935e16843b289b"
+    },
+    "XenoCore.dll": {
+      "size": 333824,
+      "sha256": "28f8f59cb00d08b5134e3bf38c4d17544517a5a213b783ba5edfb2b3cb109f3c"
+    },
+    "XenoNative.ini": {
+      "size": 168,
+      "sha256": "ee125e7ef4ff5f05747261fa12a1fe1455b2a0d39b6548c1e65d71cd4c5c9f82"
+    }
+  }
+}
