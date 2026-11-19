@@ -27,3 +27,9 @@ _Индекс создан 2026-11-05 на основании доступных
 - [FHD_UpgradeUnknovn 0.4.16 SOURCE_QA — 20 исходников + восстановленный Lang.dat](https://github.com/Wolker2/FHD_UpgradeUnknovn/tree/main/1FHD_UpgradeUnknovn_0.4.16_Nexus-GitHub), обратная сборка Lang.dat идентична 6800/6800 байт.
 
 Это исходники с локальной проверкой; они не объявлены игровыми RELEASE и не заменяют рабочие версии.
+
+
+## FHD_FastCore_Error 0.2.15
+
+- [Установочный ZIP](1FHD_FastCore_Error_0.2.15_Nexus-GitHub/install/FHD_FastCore_Error_0.2.15.zip)
+- [Исходники и отчёт](1FHD_FastCore_Error_0.2.15_Nexus-GitHub)
