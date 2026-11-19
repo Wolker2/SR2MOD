@@ -33,3 +33,8 @@ _Индекс создан 2026-11-05 на основании доступных
 
 - [Установочный ZIP](1FHD_FastCore_Error_0.2.15_Nexus-GitHub/install/FHD_FastCore_Error_0.2.15.zip)
 - [Исходники и отчёт](1FHD_FastCore_Error_0.2.15_Nexus-GitHub)
+
+
+## Сверка GitHub и Google Drive — 19.11.2026
+
+[Отчёт: 11 опубликованных комплектов, 7 ссылок на полные архивы и оставшиеся ограничения](docs/SYNC_STATUS_2026-11-19_RU.md).
